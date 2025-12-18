@@ -5,8 +5,21 @@ body{font-family:'Inter',sans-serif;background:var(--l);color:#1e293b;overflow-x
 .container{max-width:1380px;margin:0 auto;padding:0 20px;}
 h1,h2,h3{font-family:'Playfair Display',serif;}
 
-header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.95);backdrop-filter:blur(16px);padding:18px 0;border-bottom:1px solid rgba(0,0,0,.05);}
-header.scrolled{padding:12px 0;box-shadow:0 10px 40px rgba(0,0,0,.1);}
+header{
+  position:fixed;
+  top:0;left:0;right:0;
+  z-index:1000;
+  background:rgba(255,255,255,.95);
+  backdrop-filter:blur(16px);
+  padding:18px 0;
+  border-bottom:1px solid rgba(0,0,0,.05);
+  -webkit-transform:translateZ(0);
+  transform:translateZ(0);
+}
+header.scrolled{
+  padding:12px 0;
+  box-shadow:0 10px 40px rgba(0,0,0,.1);
+}
 .header-flex{display:flex;align-items:center;justify-content:space-between;gap:20px;}
 .logo{font-size:38px;font-weight:900;background:linear-gradient(135deg,var(--p),var(--a));-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:logoGlow 2s infinite alternate;}
 @keyframes logoGlow{0%{text-shadow:0 0 10px rgba(99,102,241,.3);}100%{text-shadow:0 0 20px rgba(167,139,250,.5);}}
@@ -19,7 +32,16 @@ nav a:hover::after{width:100%;}
 .lang button.active{background:var(--p);color:white;animation:none;}
 @keyframes pulse{0%{transform:scale(1);}50%{transform:scale(1.05);}100%{transform:scale(1);}}
 
-.hero{height:100vh;min-height:720px;position:relative;display:flex;align-items:center;color:white;overflow:hidden;}
+.hero{
+  height:100vh;
+  min-height:720px;
+  position:relative;
+  display:flex;
+  align-items:center;
+  color:white;
+  overflow:hidden;
+  padding-top:120px; /* Добавлено для отступа под хедер */
+}
 .animated-gradient{background:linear-gradient(270deg,#6366f1,#a78bfa,#10b981,#6366f1);background-size:400%;animation:gradient 20s ease infinite;}
 @keyframes gradient{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
 .slides{position:absolute;inset:0;}
@@ -117,7 +139,7 @@ nav a:hover::after{width:100%;}
 .contact-form{max-width:600px;margin:0 auto;}
 
 #propertyDetail { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 999; overflow-y: auto; }
-#propertyDetail .container { padding-top: 80px; } /* отступ для хедера */
+#propertyDetail .container { padding-top: 80px; }
 #propertyDetail h2 { font-size: 48px; margin-bottom: 20px; }
 #propertyDetail p { font-size: 18px; line-height: 1.8; margin-bottom: 15px; }
 #propertyDetail .price { font-size: 36px; color: var(--p); margin-top: 30px; }
@@ -147,15 +169,12 @@ nav a:hover::after{width:100%;}
   border-radius: 16px;
   box-shadow: 0 6px 20px rgba(0,0,0,.08);
   font-size: 17px;
-} 
+}
+
 /* ===== Адаптивные стили для мобильных устройств ===== */
 @media (max-width: 768px) {
   :root {
     --font-size: 16px;
-  }
-
-  * {
-    box-sizing: border-box;
   }
 
   body {
@@ -168,9 +187,17 @@ nav a:hover::after{width:100%;}
     max-width: 100%;
   }
 
-  /* Header */
+  /* Фикс хедера на мобильных */
   header {
     padding: 12px 0;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+
+  header.scrolled {
+    padding: 12px 0; /* Без изменения высоты — чтобы не прыгало */
   }
 
   .header-flex {
@@ -200,7 +227,7 @@ nav a:hover::after{width:100%;}
   /* Hero */
   .hero {
     min-height: 600px;
-    padding-top: 80px;
+    padding-top: 100px; /* Увеличенный отступ под хедер */
   }
 
   .hero-content {
@@ -327,8 +354,12 @@ nav a:hover::after{width:100%;}
   }
 }
 
-/* Для очень маленьких экранов (например, iPhone 5/SE) */
+/* Для очень маленьких экранов */
 @media (max-width: 480px) {
+  .hero {
+    padding-top: 90px;
+  }
+
   .hero h1 {
     font-size: 28px;
   }
