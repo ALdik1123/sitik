@@ -164,10 +164,16 @@ nav a:hover::after{width:100%;}
   }
 
   .container {
-    padding: 0 15px;
-    max-width: 100%;
+    padding: 0 20px;
+    width: 100%;
+    max-width: 100vw; /* Запрещаем вылезать за ширину экрана */
+    overflow: hidden; /* Скрываем возможный горизонтальный скролл */
   }
-
+}
+  .card:hover {
+    transform: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
   /* Header */
   header {
     padding: 12px 0;
@@ -242,14 +248,19 @@ nav a:hover::after{width:100%;}
 
   /* Grid */
   .grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Изменили 380 на 280 */
+    gap: 20px; /* Уменьшили расстояние между карточками для мобильных */
+    width: 100%;
+}
   .card {
-    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    /* Убираем 3D вращение на телефоне, оно может глючить при скролле */
+    transform: none !important; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* Легкая тень */
   }
-
+  
   .card img {
     height: 200px;
   }
